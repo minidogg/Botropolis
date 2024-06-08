@@ -1,0 +1,29 @@
+{
+  "name": "botropolis",
+  "version": "0.1.0",
+  "description": "An economy bot with way too many extra features.",
+  "main": "start/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon start/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minidogg/Botropolis.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "minidogg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/minidogg/Botropolis/issues"
+  },
+  "homepage": "https://github.com/minidogg/Botropolis#readme",
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "express": "^4.19.2"
+  },
+  "type": "module"
+}
