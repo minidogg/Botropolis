@@ -3,6 +3,7 @@ import {error} from 'console'
 import * as fs from 'fs'
 import * as path from 'path'
 import { Client, Events, GatewayIntentBits, ButtonBuilder, ActionRowBuilder, ButtonStyle, REST, Routes } from 'discord.js'
+import * as db from '../dbInterface/index.js'
 
 export async function main(){
     const config = JSON.parse(fs.readFileSync("./config.json","utf-8"))
@@ -32,7 +33,7 @@ export async function main(){
             if (i.component.customId != "delete") return;
             i.message.delete();
 
-
+ v
         } catch (err) {
             console.warn(err);
             i.reply("Something went wrong");
@@ -45,12 +46,12 @@ export async function main(){
     // Command interaction handler
     client.on("interactionCreate", async (i) => {
         try {
-
             if (config.guilds && !config.guilds.includes(i.guildId)) {
                 return;
             }
             if (i.isCommand() !== true) return;
-            await commands[i.commandName].execute(i, client);
+            await db.userExists(i.member.id)
+            await commands[i.commandName].execute(i, client, db);
 
         } catch (err) {
             console.warn(err);
@@ -132,6 +133,7 @@ export async function main(){
 
 
 
+    await db.waitUntilConnected()
     client.login(token).then(async () => {
         await refreshCommands();
         // express()//runs ./express/index.js

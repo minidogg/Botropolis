@@ -7,7 +7,7 @@ import { EmbedBuilder } from 'discord.js'
 const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 const added = typeof(config.host)==="string"&&config.host!==" "?` (Being hosted by ${config.host})`:""
 
-export function lazyEmbed ({title="QuoteDB",message,color=("#"+genRanHex(6)),footer="Botropolis 0.1.0a",addHostToTitle=true}){
+export function lazyEmbed ({title="Botropolis",message,color=("#"+genRanHex(6)),footer="Botropolis 0.1.0a",addHostToTitle=true}){
     let embed = new EmbedBuilder()
 	.setTitle(title+(addHostToTitle==true?added:""))
     .setColor(color)

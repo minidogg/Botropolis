@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, CommandInteraction } from 'discord.js'
+import { SlashCommandBuilder, CommandInteraction, Client } from 'discord.js'
 import {lazyEmbed} from '../lazyEmbed.js';
 import * as os from 'os'
 
@@ -9,8 +9,9 @@ export default  {
         /**
          * 
          * @param {CommandInteraction} interaction 
+         * @param {Client} client
          */
-	async execute(interaction,client) {
+	async execute(interaction, client, db) {
         await interaction.reply({embeds:[lazyEmbed({
             "title":"Pong! :ping_pong:",
             "message":`Server has been up for ${process.uptime()} seconds.`})],
