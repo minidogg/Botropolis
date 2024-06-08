@@ -50,7 +50,7 @@ export async function main(){
                 return;
             }
             if (i.isCommand() !== true) return;
-            await commands[i.commandName].execute(i, client,db);
+            await commands[i.commandName].execute(i, client);
 
         } catch (err) {
             console.warn(err);
@@ -62,12 +62,12 @@ export async function main(){
     // Commands
     var commands = {};
     var jsRegex = /^.*\.js$/;
-    fs.readdirSync("./bot/commands").forEach(async(file) => {
+    for(let file of fs.readdirSync("./bot/commands")){
         if (!jsRegex.test(file)) return;
         let rq = await import("file://"+path.resolve("./bot/commands/" + file));
         rq = rq["default"]
         commands[rq.data.name] = rq;
-    });
+    }
     var commands2 = Object.values(commands).map(e => e.data.toJSON());
 
 
@@ -128,7 +128,6 @@ export async function main(){
 
     client.on("guildCreate", (e) => {
         refreshCommandI({ e, i: 1, len: 1 });
-        db.createGuild(e.id);
     });
 
 
